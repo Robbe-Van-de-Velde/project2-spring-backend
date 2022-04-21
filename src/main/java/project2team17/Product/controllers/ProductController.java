@@ -1,5 +1,6 @@
-package project2team17.Product;
+package project2team17.Product.controllers;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.oauth2.jwt.Jwt;
 
 import java.util.Arrays;
@@ -13,16 +14,26 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import project2team17.Product.model.Product;
+import project2team17.Product.repositories.ProductRepository;
 
 @CrossOrigin( origins = "http://localhost:8080", allowCredentials = "true")
 @RestController
 public class ProductController {
 
+    private ProductRepository productRepository;
+
+    @Autowired
+    public void setProductRepository(ProductRepository productRepository){
+        this.productRepository = productRepository;
+    }
+
     @GetMapping("/products")
     public List<Product> getAllProducts() {
+        /*return productRepository.findAll();*/
         return Arrays.asList(
                 new Product(
-                        "1",
+                        new Long(1),
                         "macbook Retina 13.3' ME662 (2013)",
                         "3.0GHz Dual-core Haswell Intel Core i5 Turbo Boost up to 3.2 GHz, 3MB L3 cache 8GB (two 4GB SO-DIMMs) of 1600MHz DDR3 SDRAM",
                         "https://www.dropbox.com/s/swg9bdr0ejcbtrl/img9.jpg?raw=1",
@@ -30,7 +41,7 @@ public class ProductController {
                         2399
                 ),
                 new Product(
-                        "2",
+                        new Long(2),
                         "Macbook Pro 13.3' Retina MF841LL/A",
                         "Macbook Pro 13.3' Retina MF841LL/A Model 2015 Option Ram Care 12/2016",
                         "https://www.dropbox.com/s/6tqcep7rk29l59e/img2.jpeg?raw=1",
@@ -38,7 +49,7 @@ public class ProductController {
                         1199
                 ),
                 new Product(
-                        "3",
+                        new Long(3),
                         "Macbook Pro 15.4' Retina MC975LL/A Model 2012",
                         "3.0GHz Dual-core Haswell Intel Core i5 Turbo Boost up to 3.2 GHz, 3MB L3 cache 8GB (two 4GB SO-DIMMs) of 1600MHz DDR3 SDRAM",
                         "https://www.dropbox.com/s/78fot6w894stu3n/img3.jpg?raw=1",

@@ -1,8 +1,17 @@
-package project2team17.Product;
+package project2team17.Product.model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class Product {
 
-    private String id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+
     private String title;
     private String description;
     private String thumbnail_url;
@@ -13,7 +22,7 @@ public class Product {
 
     }
 
-    public Product(String id, String title, String description, String thumbnail_url, int quantity, float price) {
+    public Product(Long id, String title, String description, String thumbnail_url, int quantity, float price) {
         super();
         this.id = id;
         this.title = title;
@@ -23,12 +32,16 @@ public class Product {
         this.price = price;
     }
 
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
+    }
+
+    public void setPrice(float price) {
+        this.price = price;
     }
 
     public String getTitle() {

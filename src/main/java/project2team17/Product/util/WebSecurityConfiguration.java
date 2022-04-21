@@ -1,4 +1,4 @@
-package project2team17.Product;
+package project2team17.Product.util;
 
 import java.util.Arrays;
 
@@ -31,6 +31,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 .mvcMatchers(HttpMethod.GET, "/products/**").permitAll() // GET requests don't need auth
+                .antMatchers("/api/**").permitAll()
                 .anyRequest()
                 .authenticated()
                 .and()

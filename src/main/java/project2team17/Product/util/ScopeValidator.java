@@ -1,4 +1,4 @@
-package project2team17.Product;
+package project2team17.Product.util;
 
 import org.springframework.security.oauth2.core.OAuth2Error;
 import org.springframework.security.oauth2.core.OAuth2ErrorCodes;
