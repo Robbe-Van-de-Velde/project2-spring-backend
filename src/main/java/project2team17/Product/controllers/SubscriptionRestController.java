@@ -1,16 +1,15 @@
 package project2team17.Product.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import project2team17.Product.model.BankAccount;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 import project2team17.Product.model.Subscription;
-import project2team17.Product.repositories.BankAccountsRepository;
 import project2team17.Product.repositories.SubscriptionRepository;
 
+import java.util.List;
+
 @RestController
-@RequestMapping("/api/subscriptions")
+@RequestMapping("/api")
 public class SubscriptionRestController {
     SubscriptionRepository repository;
 
@@ -31,8 +30,23 @@ public class SubscriptionRestController {
         this.repository.save(sub2);
     }
 
-    @GetMapping("/overview")
-    public Iterable<Subscription> getAll(){
+    @GetMapping("/subscriptions")
+    public List<Subscription> getAllSubscription(){
         return repository.findAll();
+    }
+
+    @PostMapping("/subscriptions")
+    public Subscription createSubscription(@RequestBody Subscription subscription){
+        return repository.save(subscription);
+    }
+
+    @GetMapping("/subscriptions/{id}")
+    public Subscription getSubscription(@PathVariable("id") Long id){
+        return repository.findById(id).orElse(null);
+    }
+
+    @DeleteMapping("/subscriptions/{id}")
+    public void deleteTutorial(@PathVariable("id") Long id) {
+        repository.deleteById(id);
     }
 }
